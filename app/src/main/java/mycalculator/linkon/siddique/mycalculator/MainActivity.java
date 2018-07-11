@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
     private String listToString = "";
     private double dataResult;
     private boolean dotPressed = false;
-    private boolean operatorPressed = true;
+    private boolean finalResult = false;
+    private String lastValue = "";
+    private String secondLastOperator = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickDigit(View v) {
         Button btn = (Button) v;
-        display += btn.getText();
-        updateScreen();
+        if(finalResult) {
+            display = "";
+            display += btn.getText();
+            finalResult = false;
+            updateScreen();
+        }
+        else {
+            display += btn.getText();
+            updateScreen();
+        }
     }
 
     public void onClickDot(View v) {
@@ -66,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
             if(lastChar.equals("0") || lastChar.equals("1") || lastChar.equals("2") || lastChar.equals("3") || lastChar.equals("4") || lastChar.equals("5") || lastChar.equals("6") || lastChar.equals("7") || lastChar.equals("8") || lastChar.equals("9")){
                 display += btn.getText();
                 dotPressed = false;
+                finalResult = false;
             }
             else if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("*") || lastChar.equals("/")) {
                 display = display.substring(0, display.length() -1);
                 display += btn.getText();
                 dotPressed = false;
+                finalResult = false;
             }
         }
 
@@ -80,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickClear(View v) {
         display = "";
         dotPressed = false;
+        finalResult = false;
         updateScreen();
     }
 
@@ -163,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else result = getResultArrayOf(display, operators);
 
+        lastValue = result.get(result.size()-1);
+        secondLastOperator = result.get(result.size()-2);
+
         while (result.size()!=1) {
 
             for (int i=0; i<result.size(); i++) {
@@ -203,11 +220,32 @@ public class MainActivity extends AppCompatActivity {
 
         display = listToString;
         listToString = "";
+        finalResult = true;
+        updateScreen();
+    }
+
+    private void secondValueIncrement() {
+        double fnresult = 0.0;
+        if(secondLastOperator.equals("+")) {
+            fnresult = Double.parseDouble(display) + Double.parseDouble(lastValue);
+        }
+        else if(secondLastOperator.equals("-")) {
+            fnresult = Double.parseDouble(display) - Double.parseDouble(lastValue);
+        }
+        else if(secondLastOperator.equals("*")) {
+            fnresult = Double.parseDouble(display) * Double.parseDouble(lastValue);
+        }
+        else if(secondLastOperator.equals("/")) {
+            fnresult = Double.parseDouble(display) / Double.parseDouble(lastValue);
+        }
+
+        display = String.valueOf(fnresult);
         updateScreen();
     }
 
     public void onClickEqual(View v) {
         if (display.equals("")) return;
-        else if (display.length()!=0) calculation();
+        else if (display.length()!=0 && !finalResult) calculation();
+        else if (display.length()!=0 && finalResult) secondValueIncrement();
     }
 }
