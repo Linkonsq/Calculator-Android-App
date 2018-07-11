@@ -1,10 +1,13 @@
 package mycalculator.linkon.siddique.mycalculator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean finalResult = false;
     private String lastValue = "";
     private String secondLastOperator = "";
+    private float value;
+    private SharedPreferences sharedPref;
 
 
     @Override
@@ -53,8 +58,16 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         else {
-            display += btn.getText();
-            dotPressed = true;
+            if (finalResult) {
+                display = "";
+                display += btn.getText();
+                finalResult = false;
+                dotPressed = true;
+            }
+            else {
+                display += btn.getText();
+                dotPressed = true;
+            }
         }
         updateScreen();
     }
@@ -221,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         display = listToString;
         listToString = "";
         finalResult = true;
+        dotPressed = false;
         updateScreen();
     }
 
@@ -247,5 +261,67 @@ public class MainActivity extends AppCompatActivity {
         if (display.equals("")) return;
         else if (display.length()!=0 && !finalResult) calculation();
         else if (display.length()!=0 && finalResult) secondValueIncrement();
+    }
+
+    private boolean writeInMemory(float v) {
+        try {
+            sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putFloat("memory", v);
+            editor.commit();
+            return true;
+        }
+        catch (Exception e) { return false; }
+    }
+
+    private float readFromMemory() {
+        try {
+            sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+            float defaultValue = 0;
+            float memValue = sharedPref.getFloat("memory", defaultValue);
+            return memValue;
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "HAHAHA", Toast.LENGTH_SHORT);
+            return -1;
+        }
+    }
+
+    public void onClickMR(View v) {
+        float memValue = readFromMemory();
+        display = String.valueOf(memValue);
+        updateScreen();
+    }
+
+    public void onClickMClear(View v) {
+        value = 0;
+        if (writeInMemory(value)) {
+            Toast.makeText(this,"cleared", Toast.LENGTH_SHORT);
+        }
+        else {
+            Toast.makeText(this,"not cleared", Toast.LENGTH_SHORT);
+        }
+    }
+
+    public void onClickMPlus(View v) {
+        float memValue = readFromMemory();
+        memValue += Float.valueOf(display);
+        if (writeInMemory(memValue)) {
+            Toast.makeText(this, "added", Toast.LENGTH_SHORT);
+        }
+        else {
+            Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
+        }
+    }
+
+    public void onClickMMinus(View v) {
+        float memValue = readFromMemory();
+        memValue -= Float.valueOf(display);
+        if (writeInMemory(memValue)) {
+            Toast.makeText(this, "added", Toast.LENGTH_SHORT);
+        }
+        else {
+            Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
+        }
     }
 }

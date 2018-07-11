@@ -229,9 +229,10 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="166dp"
             android:background="@color/buttonColor"
-            android:textSize="20sp"
+            android:onClick="onClickMPlus"
             android:text="@string/MPlus"
             android:textColor="@color/buttonTextColor"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
@@ -241,9 +242,10 @@
             android:layout_alignTop="@+id/button13"
             android:layout_toEndOf="@+id/button7"
             android:background="@color/buttonColor"
-            android:textSize="20sp"
+            android:onClick="onClickMMinus"
             android:text="@string/MMinus"
             android:textColor="@color/buttonTextColor"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
@@ -253,9 +255,10 @@
             android:layout_alignTop="@+id/button13"
             android:layout_toEndOf="@+id/button8"
             android:background="@color/buttonColor"
-            android:textSize="20sp"
+            android:onClick="onClickMR"
             android:text="@string/MR"
             android:textColor="@color/buttonTextColor"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
@@ -265,9 +268,10 @@
             android:layout_alignTop="@+id/button13"
             android:layout_toEndOf="@+id/button9"
             android:background="@color/buttonColor"
-            android:textSize="20sp"
+            android:onClick="onClickMClear"
             android:text="@string/MC"
             android:textColor="@color/buttonTextColor"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <TextView
