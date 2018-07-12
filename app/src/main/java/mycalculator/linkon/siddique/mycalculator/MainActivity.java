@@ -1,14 +1,18 @@
 package mycalculator.linkon.siddique.mycalculator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +29,15 @@ public class MainActivity extends AppCompatActivity {
     private float value;
     private SharedPreferences sharedPref;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_main);
+        }
+        else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_landscape);
+        }
         screen = (TextView) findViewById(R.id.textView);
         screen.setText(display);
     }
@@ -124,6 +132,21 @@ public class MainActivity extends AppCompatActivity {
         updateScreen();
     }
 
+    private void writeInFile(String beforeEqual, String afterEqual) {
+        try {
+            OutputStreamWriter out = new OutputStreamWriter(openFileOutput("Text.txt", MODE_APPEND));
+            String hist = beforeEqual + " = " + afterEqual;
+            out.write(hist);
+            out.close();
+            Log.d("a", "Write Done");
+            Log.d("b", hist);
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Write Exception", Toast.LENGTH_SHORT);
+            Log.d("a", e.getMessage());
+        }
+    }
+
     private static List<String> getResultArrayOf(String str , ArrayList<String> operators) {
         List<String> result = new ArrayList<String>();
         String data = "";
@@ -182,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
         operators.add("/");
         //List<String> result = getResultArrayOf(display, operators);
 
+        String beforeEqual = display;
+        String afterEqual = "";
         List<String> result = new ArrayList<String>();
         String lastChar = display.substring(display.length() -1);
 
@@ -232,9 +257,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         display = listToString;
+        afterEqual = listToString;
         listToString = "";
         finalResult = true;
         dotPressed = false;
+        writeInFile(beforeEqual, afterEqual);
         updateScreen();
     }
 
@@ -258,7 +285,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEqual(View v) {
-        if (display.equals("")) return;
+        if (display.equals("")) {
+            return;
+        }
         else if (display.length()!=0 && !finalResult) calculation();
         else if (display.length()!=0 && finalResult) secondValueIncrement();
     }
@@ -323,5 +352,10 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
         }
+    }
+
+    public void onClickHistory(View v) {
+        Intent historyIntent = new Intent(MainActivity.this, HistoryActivity.class);
+        startActivity(historyIntent);
     }
 }

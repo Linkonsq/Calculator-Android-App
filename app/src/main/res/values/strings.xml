@@ -23,4 +23,5 @@
     <string name="MC">MC</string>
     <string name="Clear">C</string>
     <string name="history">Hist</string>
+    <string name="back">Back</string>
 </resources>
