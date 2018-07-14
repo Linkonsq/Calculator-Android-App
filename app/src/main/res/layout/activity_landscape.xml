@@ -8,9 +8,9 @@
 
     <RelativeLayout
         android:layout_width="590dp"
-        android:layout_height="513dp"
+        android:layout_height="500dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <Button
@@ -172,8 +172,8 @@
             android:id="@+id/buttonDiv"
             android:layout_width="85dp"
             android:layout_height="55dp"
-            android:layout_toEndOf="@+id/buttonMulti"
             android:layout_alignTop="@+id/button8"
+            android:layout_toEndOf="@+id/buttonMulti"
             android:background="@color/buttonColor"
             android:onClick="onClickOperator"
             android:text="@string/div"
