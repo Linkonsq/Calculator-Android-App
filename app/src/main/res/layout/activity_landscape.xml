@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="590dp"
-        android:layout_height="500dp"
+        android:layout_height="490dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
@@ -308,7 +308,7 @@
             android:onClick="onClickDel"
             android:text="@string/del"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
 
         <Button
@@ -320,7 +320,7 @@
             android:onClick="onClickClear"
             android:text="@string/Clear"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
     </RelativeLayout>
 
