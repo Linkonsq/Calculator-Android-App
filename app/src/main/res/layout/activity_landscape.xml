@@ -16,122 +16,122 @@
         <Button
             android:id="@+id/button7"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignTop="@+id/button8"
             android:layout_toStartOf="@+id/button8"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/seven"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_above="@+id/button4"
             android:layout_alignStart="@+id/button4"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/eight"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignTop="@+id/button8"
             android:layout_centerHorizontal="true"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/nine"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_above="@+id/button1"
             android:layout_toStartOf="@+id/button1"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/four"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignTop="@+id/button4"
             android:layout_centerHorizontal="true"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/five"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_above="@+id/button4"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/six"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button1"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignTop="@+id/buttonDot"
             android:layout_centerHorizontal="true"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/one"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_above="@+id/button1"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/two"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button8"
             android:layout_toEndOf="@+id/button6"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/three"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/buttonDot"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="199dp"
@@ -145,59 +145,59 @@
         <Button
             android:id="@+id/button0"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignStart="@+id/button7"
             android:layout_below="@+id/button4"
             android:background="@color/buttonColor"
             android:onClick="onClickDigit"
             android:text="@string/zero"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/buttonEqual"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button4"
             android:layout_toEndOf="@+id/button7"
             android:background="@color/buttonColor"
             android:onClick="onClickEqual"
             android:text="@string/equal"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/buttonDiv"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignTop="@+id/button8"
             android:layout_toEndOf="@+id/buttonMulti"
             android:background="@color/buttonColor"
             android:onClick="onClickOperator"
             android:text="@string/div"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/buttonMulti"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignTop="@+id/button8"
             android:layout_toEndOf="@+id/button9"
             android:background="@color/buttonColor"
             android:onClick="onClickOperator"
             android:text="@string/multi"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/buttonSub"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button8"
             android:layout_toEndOf="@+id/button9"
             android:background="@color/buttonColor"
@@ -210,97 +210,97 @@
         <Button
             android:id="@+id/buttonAdd"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button4"
             android:layout_toEndOf="@+id/button5"
             android:background="@color/buttonColor"
             android:onClick="onClickOperator"
             android:text="@string/add"
             android:textColor="@color/buttonTextColor"
-            android:textSize="30sp"
+            android:textSize="20sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button13"
             android:layout_width="82dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button8"
             android:layout_toEndOf="@+id/buttonDiv"
             android:background="@color/buttonColor"
             android:onClick="onClickMPlus"
             android:text="@string/MPlus"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button14"
-            android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_width="82dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button4"
             android:layout_toEndOf="@+id/button16"
             android:background="@color/buttonColor"
             android:onClick="onClickMMinus"
             android:text="@string/MMinus"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button15"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/button8"
             android:background="@color/buttonColor"
             android:onClick="onClickMR"
             android:text="@string/MR"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button16"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_alignBottom="@+id/button4"
             android:layout_toEndOf="@+id/buttonMulti"
             android:background="@color/buttonColor"
             android:onClick="onClickMClear"
             android:text="@string/MC"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="101dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="5dp"
             android:text=""
-            android:textSize="50dp"
+            android:textSize="40dp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button17"
             android:layout_width="85dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/button4"
             android:layout_toEndOf="@+id/buttonAdd"
             android:background="@color/buttonColor"
             android:onClick="onClickHistory"
             android:text="@string/history"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
+            android:textSize="15sp"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/buttonDel"
             android:layout_width="291dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_above="@+id/button8"
             android:layout_marginStart="46dp"
             android:layout_toEndOf="@+id/button8"
@@ -314,7 +314,7 @@
         <Button
             android:id="@+id/buttonClear"
             android:layout_width="301dp"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_above="@+id/button8"
             android:background="@color/buttonColor"
             android:onClick="onClickClear"
