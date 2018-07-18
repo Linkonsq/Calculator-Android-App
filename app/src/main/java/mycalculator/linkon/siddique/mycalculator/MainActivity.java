@@ -42,6 +42,54 @@ public class MainActivity extends AppCompatActivity {
         screen.setText(display);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("str", display);
+        savedInstanceState.putBoolean("bool1", dotPressed);
+        savedInstanceState.putBoolean("bool2", finalResult);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String myString = savedInstanceState.getString("str");
+        dotPressed = savedInstanceState.getBoolean("bool1");
+        finalResult = savedInstanceState.getBoolean("bool2");
+        display = myString;
+        updateScreen();
+    }
+
     private void updateScreen() {
         screen.setText(display);
     }
@@ -82,12 +130,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickOperator(View v) {
         Button btn = (Button) v;
-
-        /**
-        if(display.equals("+") || display.equals("-") || display.equals("*") || display.equals("/")) {
-            display = String.valueOf(btn.getText());
-        }//!"+".equals(lastChar) || !"-".equals(lastChar) || !"*".equals(lastChar) || !"/".equals(lastChar)
-        **/
 
         if (display.equals("")) {
             return;
@@ -135,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     private void writeInFile(String beforeEqual, String afterEqual) {
         try {
             OutputStreamWriter out = new OutputStreamWriter(openFileOutput("Text.txt", MODE_APPEND));
-            String hist = beforeEqual + " = " + afterEqual;
+            String hist = beforeEqual + " = " + afterEqual + "\n";
             out.write(hist);
             out.close();
             Log.d("a", "Write Done");
@@ -215,69 +257,76 @@ public class MainActivity extends AppCompatActivity {
         }
         else result = getResultArrayOf(display, operators);
 
-        lastValue = result.get(result.size()-1);
-        secondLastOperator = result.get(result.size()-2);
+        if (result.size() > 1) {
+            lastValue = result.get(result.size()-1);
+            secondLastOperator = result.get(result.size()-2);
 
-        while (result.size()!=1) {
+            while (result.size()!=1) {
 
-            for (int i=0; i<result.size(); i++) {
-                String data = result.get(i);
-                if (operators.contains(data)) {
+                for (int i=0; i<result.size(); i++) {
+                    String data = result.get(i);
+                    if (operators.contains(data)) {
 
-                    if (data.equals("*")) {
-                        dataResult = Double.parseDouble(result.get(i-1)) * Double.parseDouble(result.get(i+1));
-                        System.out.println(dataResult);
-                        result = getResult(i-1, i+1, dataResult, result);
-                        break;
-                    }
+                        if (data.equals("*")) {
+                            dataResult = Double.parseDouble(result.get(i-1)) * Double.parseDouble(result.get(i+1));
+                            System.out.println(dataResult);
+                            result = getResult(i-1, i+1, dataResult, result);
+                            break;
+                        }
 
-                    if (data.equals("/")) {
-                        dataResult = Double.parseDouble(result.get(i-1)) / Double.parseDouble(result.get(i+1));
-                        result = getResult(i-1, i+1, dataResult, result);
-                        break;
-                    }
+                        if (data.equals("/")) {
+                            dataResult = Double.parseDouble(result.get(i-1)) / Double.parseDouble(result.get(i+1));
+                            result = getResult(i-1, i+1, dataResult, result);
+                            break;
+                        }
 
-                    if (data.equals("+")) {
-                        dataResult = Double.parseDouble(result.get(i-1)) + Double.parseDouble(result.get(i+1));
-                        result = getResult(i-1, i+1, dataResult, result);
-                        break;
-                    }
+                        if (data.equals("+")) {
+                            dataResult = Double.parseDouble(result.get(i-1)) + Double.parseDouble(result.get(i+1));
+                            result = getResult(i-1, i+1, dataResult, result);
+                            break;
+                        }
 
-                    if (data.equals("-")) {
-                        dataResult = Double.parseDouble(result.get(i-1)) - Double.parseDouble(result.get(i+1));
-                        result = getResult(i-1, i+1, dataResult, result);
-                        break;
+                        if (data.equals("-")) {
+                            dataResult = Double.parseDouble(result.get(i-1)) - Double.parseDouble(result.get(i+1));
+                            result = getResult(i-1, i+1, dataResult, result);
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        for (String s : result) {
-            listToString += s;
-        }
+            for (String s : result) {
+                listToString += s;
+            }
 
-        display = listToString;
-        afterEqual = listToString;
-        listToString = "";
-        finalResult = true;
-        dotPressed = false;
-        writeInFile(beforeEqual, afterEqual);
-        updateScreen();
+            display = listToString;
+            afterEqual = listToString;
+            listToString = "";
+            finalResult = true;
+            dotPressed = false;
+            writeInFile(beforeEqual, afterEqual);
+            updateScreen();
+        }
+        else return;
     }
 
     private void secondValueIncrement() {
         double fnresult = 0.0;
         if(secondLastOperator.equals("+")) {
             fnresult = Double.parseDouble(display) + Double.parseDouble(lastValue);
+            writeInFile(display + "+" + lastValue, String.valueOf(fnresult));
         }
         else if(secondLastOperator.equals("-")) {
             fnresult = Double.parseDouble(display) - Double.parseDouble(lastValue);
+            writeInFile(display + "-" + lastValue, String.valueOf(fnresult));
         }
         else if(secondLastOperator.equals("*")) {
             fnresult = Double.parseDouble(display) * Double.parseDouble(lastValue);
+            writeInFile(display + "*" + lastValue, String.valueOf(fnresult));
         }
         else if(secondLastOperator.equals("/")) {
             fnresult = Double.parseDouble(display) / Double.parseDouble(lastValue);
+            writeInFile(display + "/" + lastValue, String.valueOf(fnresult));
         }
 
         display = String.valueOf(fnresult);
@@ -285,9 +334,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEqual(View v) {
-        if (display.equals("")) {
-            return;
-        }
+        if (display.equals("")) { return; }
         else if (display.length()!=0 && !finalResult) calculation();
         else if (display.length()!=0 && finalResult) secondValueIncrement();
     }
@@ -319,6 +366,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickMR(View v) {
         float memValue = readFromMemory();
         display = String.valueOf(memValue);
+        finalResult = true;
+        dotPressed = false;
         updateScreen();
     }
 
@@ -333,24 +382,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickMPlus(View v) {
-        float memValue = readFromMemory();
-        memValue += Float.valueOf(display);
-        if (writeInMemory(memValue)) {
-            Toast.makeText(this, "added", Toast.LENGTH_SHORT);
-        }
+        if (display.equals("")) { return; }
         else {
-            Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
+            float memValue = readFromMemory();
+            memValue += Float.valueOf(display);
+            if (writeInMemory(memValue)) {
+                Toast.makeText(this, "added", Toast.LENGTH_SHORT);
+            }
+            else {
+                Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
+            }
         }
     }
 
     public void onClickMMinus(View v) {
-        float memValue = readFromMemory();
-        memValue -= Float.valueOf(display);
-        if (writeInMemory(memValue)) {
-            Toast.makeText(this, "added", Toast.LENGTH_SHORT);
-        }
+        if (display.equals("")) { return; }
         else {
-            Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
+            float memValue = readFromMemory();
+            memValue -= Float.valueOf(display);
+            if (writeInMemory(memValue)) {
+                Toast.makeText(this, "added", Toast.LENGTH_SHORT);
+            }
+            else {
+                Toast.makeText(this, "not added", Toast.LENGTH_SHORT);
+            }
         }
     }
 
